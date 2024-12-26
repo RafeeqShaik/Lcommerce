@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useDeleteProductById } from "@/services/product";
 import { useAtom } from "jotai";
 import { Edit, Plus, Trash } from "lucide-react";
 import Image from "next/image";
@@ -17,6 +18,7 @@ import Link from "next/link";
 
 export default function Products() {
   const [products] = useAtom(productsAtom);
+  const { mutateAsync } = useDeleteProductById();
 
   return (
     <div className="container">
@@ -61,7 +63,11 @@ export default function Products() {
                       <Edit />
                     </Link>
                   </Button>
-                  <Button size={"icon"} variant={"destructive"}>
+                  <Button
+                    onClick={() => mutateAsync(id)}
+                    size={"icon"}
+                    variant={"destructive"}
+                  >
                     <Trash />
                   </Button>
                 </TableCell>

@@ -59,3 +59,17 @@ export const useUpdateProductById = (productId: string) => {
     },
   });
 };
+
+export const useDeleteProductById = () => {
+  const [products, setProducts] = useAtom(productsAtom);
+
+  return useMutation({
+    mutationFn: async (productId: string) => {
+      const product = products.find((product) => product.id === productId);
+      if (!product) return toast.error("Product not found");
+      setProducts((prev) => {
+        return prev.filter((p) => p.id !== productId);
+      });
+    },
+  });
+};
