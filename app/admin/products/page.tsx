@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAtom } from "jotai";
-import { Plus } from "lucide-react";
+import { Edit, Plus, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,6 +37,7 @@ export default function Products() {
             <TableHead>Product</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Category</TableHead>
+            <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -45,8 +46,8 @@ export default function Products() {
               <TableRow key={id}>
                 <TableCell>
                   <Image
-                    width={100}
-                    height={100}
+                    width={50}
+                    height={50}
                     src={imageUrl}
                     alt="product-image"
                   />
@@ -54,6 +55,16 @@ export default function Products() {
                 <TableCell>{name}</TableCell>
                 <TableCell>{price}</TableCell>
                 <TableCell>{category}</TableCell>
+                <TableCell className="flex items-center gap-4">
+                  <Button size={"icon"} asChild>
+                    <Link href={`/admin/products/edit/${id}`}>
+                      <Edit />
+                    </Link>
+                  </Button>
+                  <Button size={"icon"} variant={"destructive"}>
+                    <Trash />
+                  </Button>
+                </TableCell>
               </TableRow>
             );
           })}
