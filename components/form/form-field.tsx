@@ -18,7 +18,7 @@ export function FormField({ label, name, className, ...rest }: Props) {
       name={name}
       render={({ field }) => (
         <FormItem>
-          {label && <FormLabel>Username</FormLabel>}
+          {label && <FormLabel>{label}</FormLabel>}
           <FormControl>
             <Input
               placeholder="shadcn"
